@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3661902395fab4f49924dd7d080e8894, type: 3}
+  m_Name: Spin_Slice_Item_Chest_Bronze
+  m_EditorClassIdentifier: 
+  ItemSprite: {fileID: 21300000, guid: a3ee143095d680d458e2db5b2ced3cdb, type: 3}
+  chestType: 0
+  chestItemChannel: {fileID: 11400000, guid: deb1f8206e3a34143947abce39167393, type: 2}
