@@ -10,27 +10,25 @@ public class SpinWheel : ValidatedMonoBehaviour
     [SerializeField] private AnimationCurve spinCurve;
     
     private float spinAngleForSlice;
-    private int currentSlotIndex;
+    private int currentSliceIndex;
     private bool isSpinning;
     
     // For indicator animation
     [SerializeField, Anywhere] private Transform indicatorTransform;
     private float lastCheckedAngle;
 
-    [SerializeField, Child] private SpinSlice[] spinSlots;
+    [SerializeField, Child] private SpinSlice[] spinSlices;
+    
     private void Start()
     {
-        spinAngleForSlice = 360f / spinSlots.Length;
+        spinAngleForSlice = 360f / spinSlices.Length;
     }
     
     public void Spin()
     {
-        if (isSpinning)
-        {
-            return;
-        }
+        if (isSpinning) { return; }
         
-        int randomSlotIndex = Random.Range(0, spinSlots.Length);
+        int randomSlotIndex = Random.Range(0, spinSlices.Length);
         float angleToSpin = randomSlotIndex * spinAngleForSlice;
         
         isSpinning = true;
@@ -39,9 +37,8 @@ public class SpinWheel : ValidatedMonoBehaviour
             .OnUpdate(CheckIndicatorAnimation)
             .OnComplete(() =>
             {
-                isSpinning = false;
-                currentSlotIndex = randomSlotIndex;
-                Debug.Log("Spin Completed at Slot: " + currentSlotIndex);
+                currentSliceIndex = randomSlotIndex;
+                spinSlices[currentSliceIndex].SpinSliceAction();
             });
     }
 
