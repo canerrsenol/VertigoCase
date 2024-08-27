@@ -14,6 +14,12 @@ public class SpinWheel : ValidatedMonoBehaviour
 
     private int zoneCounter;
     
+    [SerializeField, Anywhere] SpinWheelZoneSettingsSO bronzeZoneSettings;
+    [SerializeField, Anywhere] SpinWheelZoneSettingsSO silverZoneSettings;
+    [SerializeField, Anywhere] SpinWheelZoneSettingsSO goldZoneSettings;
+    
+    [SerializeField, Self] private SpinWheelVisual spinWheelVisual;
+    
     [SerializeField, Anywhere] private IntEventChannelSO onZoneCounterChanged;
     [SerializeField, Anywhere] private VoidEventChannelSO onSpinWheelClicked;
     
@@ -75,7 +81,7 @@ public class SpinWheel : ValidatedMonoBehaviour
             });
     }
     
-    private void OnSpinChest(ChestType arg1, int arg2)
+    private void OnSpinChest(ChestType chestType, int multiplier)
     {
         
     }
@@ -85,12 +91,12 @@ public class SpinWheel : ValidatedMonoBehaviour
         // Game over
     }
 
-    private void OnSpinGold(int obj)
+    private void OnSpinGold(int multiplier)
     {
         isSpinning = false;
     }
 
-    private void OnSpinMoney(int obj)
+    private void OnSpinMoney(int multiplier)
     {
         isSpinning = false;
     }
@@ -100,6 +106,19 @@ public class SpinWheel : ValidatedMonoBehaviour
         // Update zone counter
         zoneCounter++;
         onZoneCounterChanged.RaiseEvent(zoneCounter);
+
+        if (zoneCounter == 5)
+        {
+            spinWheelVisual.SetSpinWheelVisual(silverZoneSettings);
+        }
+        else if (zoneCounter == 30)
+        {
+            spinWheelVisual.SetSpinWheelVisual(goldZoneSettings);
+        }
+        else
+        {
+            spinWheelVisual.SetSpinWheelVisual(bronzeZoneSettings);
+        }
         
         // Update slice multipliers and items
     }
