@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using KBCore.Refs;
-using UnityEngine.Serialization;
 
 public class SpinWheel : ValidatedMonoBehaviour
 {
@@ -17,6 +16,11 @@ public class SpinWheel : ValidatedMonoBehaviour
     
     [SerializeField, Anywhere] private IntEventChannelSO onZoneCounterChanged;
     [SerializeField, Anywhere] private VoidEventChannelSO onSpinWheelClicked;
+    
+    [SerializeField, Anywhere] private IntEventChannelSO onSpinMoney;
+    [SerializeField, Anywhere] private IntEventChannelSO onSpinGold;
+    [SerializeField, Anywhere] private IntEventChannelSO onSpinBomb;
+    [SerializeField, Anywhere] private ChestItemChannelSO onSpinChest;
     
     // For indicator animation
     [SerializeField, Anywhere] private Transform indicatorTransform;
@@ -34,11 +38,21 @@ public class SpinWheel : ValidatedMonoBehaviour
     private void OnEnable()
     {
         onSpinWheelClicked.OnEventRaised += Spin;
+        
+        onSpinMoney.OnEventRaised += OnSpinMoney;
+        onSpinGold.OnEventRaised += OnSpinGold;
+        onSpinBomb.OnEventRaised += OnSpinBomb;
+        onSpinChest.OnEventRaised += OnSpinChest;
     }
-    
+
     private void OnDisable()
     {
         onSpinWheelClicked.OnEventRaised -= Spin;
+        
+        onSpinMoney.OnEventRaised -= OnSpinMoney;
+        onSpinGold.OnEventRaised -= OnSpinGold;
+        onSpinBomb.OnEventRaised -= OnSpinBomb;
+        onSpinChest.OnEventRaised -= OnSpinChest;
     }
     
     public void Spin()
@@ -60,6 +74,26 @@ public class SpinWheel : ValidatedMonoBehaviour
                 Debug.Log("Spin completed at index: " + currentSliceIndex);
             });
     }
+    
+    private void OnSpinChest(ChestType arg1, int arg2)
+    {
+        
+    }
+
+    private void OnSpinBomb(int multiplier)
+    {
+        // Game over
+    }
+
+    private void OnSpinGold(int obj)
+    {
+        isSpinning = false;
+    }
+
+    private void OnSpinMoney(int obj)
+    {
+        isSpinning = false;
+    }
 
     private void PrepareForNextSpin()
     {
@@ -68,8 +102,6 @@ public class SpinWheel : ValidatedMonoBehaviour
         onZoneCounterChanged.RaiseEvent(zoneCounter);
         
         // Update slice multipliers and items
-        
-        
     }
 
     private void CheckIndicatorAnimation()
