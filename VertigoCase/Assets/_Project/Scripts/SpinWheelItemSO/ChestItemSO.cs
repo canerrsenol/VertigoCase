@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ChestItem", menuName = "SpinWheel/ChestItem")]
-public class ChestItemSO : SpinWheelItemSO
+public class ChestItemSO : SpinSliceItemSO
 {
     public ChestType chestType;
     

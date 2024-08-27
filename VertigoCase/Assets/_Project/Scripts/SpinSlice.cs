@@ -8,17 +8,29 @@ public class SpinSlice : MonoBehaviour
     [SerializeField, Child] private TextMeshProUGUI multiplierText;
     [SerializeField, Child] private Image itemImage;
 
-    [SerializeField, Anywhere] private SpinWheelItemSO spinSliceItem;
+    [SerializeField, Anywhere] private SpinSliceItemSO spinSliceItem;
     [SerializeField] private int slotMultiplier = 10;
 
     private void OnValidate()
     {
-        multiplierText.text = slotMultiplier + "x";
-        itemImage.sprite = spinSliceItem?.ItemSprite;
+        UpdateSliceVisual();
     }
     
     public void SpinSliceAction()
     {
         spinSliceItem.OnSpinWheelItem(slotMultiplier);
     }
+    
+    public void SetItem(SpinSliceItemSO item, int multiplier)
+    {
+        spinSliceItem = item;
+        slotMultiplier = multiplier;
+        UpdateSliceVisual();
+    }
+
+    private void UpdateSliceVisual()
+    {
+        multiplierText.text = slotMultiplier + "x";
+        if(spinSliceItem != null) itemImage.sprite = spinSliceItem.ItemSprite;
+    } 
 }

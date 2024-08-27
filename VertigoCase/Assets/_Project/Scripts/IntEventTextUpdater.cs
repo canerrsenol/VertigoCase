@@ -22,7 +22,7 @@ public class IntEventTextUpdater : ValidatedMonoBehaviour
 
     private void UpdateText(int value)
     {
-        DOVirtual.Int(currentValue, value, 0.5f, (x) =>
+        DOVirtual.Int(currentValue, value, 1f, (x) =>
             {
                 currentValue = x;
                 text.text = currentValue.ToString();

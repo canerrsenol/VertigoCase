@@ -8,5 +8,6 @@ public class SpinWheelZoneSettingsSO : ScriptableObject
     public string Name;
     public string ItemDescription;
     public bool isRiskFree;
-    public SpinWheelItemSO[] canHaveItems;
+    public int zoneMultiplier;
+    public SpinSliceItemSO[] canHaveItems;
 }

@@ -900,6 +900,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92f81682b164844b971125d938a907a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &434479992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434479994}
+  - component: {fileID: 434479993}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &434479993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434479992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a48e4774d741d740be46a3141836c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPanel: {fileID: 1688595198}
+  onSpinBomb: {fileID: 11400000, guid: a8fb5b69276abf541b23cb1d9808e7bd, type: 2}
+  onGiveUpButtonClicked: {fileID: 11400000, guid: d40e132b64105904295176c04c9bc8cd,
+    type: 2}
+--- !u!4 &434479994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434479992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &437501882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,6 +2961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc06eeeab0fb614288e2a45d5a92a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spinWheelVisual: {fileID: 1315855992}
   spinDuration: 3
   baseSpinAngle: 720
   spinCurve:
@@ -2957,17 +3006,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  bombItem: {fileID: 11400000, guid: aa19d06a9b2a29147bbe55a347bef7d4, type: 2}
   bronzeZoneSettings: {fileID: 11400000, guid: 42eb1b789ec0e474a86e88dba0a705c3, type: 2}
   silverZoneSettings: {fileID: 11400000, guid: b34cbd28f1be47447814faaff125dd59, type: 2}
   goldZoneSettings: {fileID: 11400000, guid: e4ffaf07fe4a306439b91d2d0881daf6, type: 2}
-  spinWheelVisual: {fileID: 1315855992}
   onZoneCounterChanged: {fileID: 11400000, guid: 77868d72cf044dd4baa32561e2edf776,
     type: 2}
   onSpinWheelClicked: {fileID: 11400000, guid: 7987ff60908f3714a82e36c7a1f9c7dc, type: 2}
-  onSpinMoney: {fileID: 11400000, guid: e3a6e0e8293372d45b94d46a7137c1f7, type: 2}
-  onSpinGold: {fileID: 11400000, guid: 0574dca320a53ab45825138084522b3e, type: 2}
-  onSpinBomb: {fileID: 11400000, guid: a8fb5b69276abf541b23cb1d9808e7bd, type: 2}
-  onSpinChest: {fileID: 11400000, guid: deb1f8206e3a34143947abce39167393, type: 2}
   indicatorTransform: {fileID: 1261728627}
   spinSlices:
   - {fileID: 976210994}
@@ -2998,7 +3043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c7a91705e14695540b3a931ba139423b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df9e3075f59617a42bb33e64563f575b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3510,6 +3555,7 @@ GameObject:
   - component: {fileID: 1415713524}
   - component: {fileID: 1415713523}
   - component: {fileID: 1415713522}
+  - component: {fileID: 1415713525}
   m_Layer: 5
   m_Name: ui_button_giveup
   m_TagString: Untagged
@@ -3620,6 +3666,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415713520}
   m_CullTransparentMesh: 1
+--- !u!114 &1415713525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415713520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcd894a7af3c05489e9290cbcbbd430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonEventChannelSO: {fileID: 11400000, guid: d40e132b64105904295176c04c9bc8cd,
+    type: 2}
+  button: {fileID: 1415713522}
 --- !u!1 &1517161244
 GameObject:
   m_ObjectHideFlags: 0
