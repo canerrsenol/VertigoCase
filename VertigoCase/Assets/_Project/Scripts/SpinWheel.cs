@@ -17,6 +17,7 @@ public class SpinWheel : ValidatedMonoBehaviour
     
     [SerializeField, Anywhere] private IntEventChannelSO onZoneCounterChanged;
     [SerializeField, Anywhere] private VoidEventChannelSO onSpinWheelClicked;
+    [SerializeField, Anywhere] private VoidEventChannelSO onSpinReset;
     
     // For indicator animation
     [SerializeField, Anywhere] private Transform indicatorTransform;
@@ -26,11 +27,16 @@ public class SpinWheel : ValidatedMonoBehaviour
     private int currentSliceIndex;
     private bool isSpinning;
     private int zoneCounter;
+    
+    private SpinWheelZoneSettingsSO currentZoneSettings;
 
     [SerializeField, Child] private SpinSlice[] spinSlices;
     
     private void Start()
     {
+        currentZoneSettings = bronzeZoneSettings;
+        spinWheelVisual.SetSpinWheelVisual(bronzeZoneSettings);
+        
         spinAngleForSlice = 360f / spinSlices.Length;
         zoneCounter = 1;
         onZoneCounterChanged.RaiseEvent(zoneCounter);
@@ -39,13 +45,24 @@ public class SpinWheel : ValidatedMonoBehaviour
     private void OnEnable()
     {
         onSpinWheelClicked.OnEventRaised += Spin;
+        onSpinReset.OnEventRaised += ResetSpin;
     }
 
     private void OnDisable()
     {
         onSpinWheelClicked.OnEventRaised -= Spin;
+        onSpinReset.OnEventRaised -= ResetSpin;
     }
-    
+
+    private void ResetSpin()
+    {
+        zoneCounter = 1;
+        onZoneCounterChanged.RaiseEvent(zoneCounter);
+        currentZoneSettings = bronzeZoneSettings;
+        spinWheelVisual.SetSpinWheelVisual(bronzeZoneSettings);
+        UpdateSliceItems(currentZoneSettings);
+    }
+
     public void Spin()
     {
         if (isSpinning) { return; }
@@ -62,8 +79,11 @@ public class SpinWheel : ValidatedMonoBehaviour
                 currentSliceIndex = randomSlotIndex;
                 spinSlices[currentSliceIndex].SpinSliceAction();
                 
-                isSpinning = false;
-                PrepareForNextSpin();
+                DOVirtual.DelayedCall(1f, () => 
+                {
+                    isSpinning = false;
+                    PrepareForNextSpin();
+                });
                 
                 Debug.Log("Spin completed at index: " + currentSliceIndex);
             });
@@ -77,19 +97,19 @@ public class SpinWheel : ValidatedMonoBehaviour
 
         if (zoneCounter == 5)
         {
-            spinWheelVisual.SetSpinWheelVisual(silverZoneSettings);
-            UpdateSliceItems(silverZoneSettings);
+            currentZoneSettings = silverZoneSettings;
         }
         else if (zoneCounter == 30)
         {
-            spinWheelVisual.SetSpinWheelVisual(goldZoneSettings);
-            UpdateSliceItems(goldZoneSettings);
+            currentZoneSettings = goldZoneSettings;
         }
         else
         {
-            spinWheelVisual.SetSpinWheelVisual(bronzeZoneSettings);
-            UpdateSliceItems(bronzeZoneSettings);
+            currentZoneSettings = bronzeZoneSettings;
         }
+        
+        spinWheelVisual.SetSpinWheelVisual(currentZoneSettings);
+        UpdateSliceItems(currentZoneSettings);
     }
 
     private void UpdateSliceItems(SpinWheelZoneSettingsSO zoneSettings)
@@ -117,7 +137,7 @@ public class SpinWheel : ValidatedMonoBehaviour
     private void SetRandomItemToSlice(SpinWheelZoneSettingsSO zoneSettings, int i)
     {
         var randomItem = zoneSettings.canHaveItems[Random.Range(0, zoneSettings.canHaveItems.Length)];
-        spinSlices[i].SetItem(randomItem, Random.Range(1, zoneSettings.zoneMultiplier * zoneCounter));
+        spinSlices[i].SetItem(randomItem, zoneSettings.zoneMultiplier * zoneCounter);
     }
 
     private void CheckIndicatorAnimation()

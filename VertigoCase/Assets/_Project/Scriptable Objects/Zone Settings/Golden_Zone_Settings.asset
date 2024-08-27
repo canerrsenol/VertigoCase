@@ -17,7 +17,7 @@ MonoBehaviour:
   Name: GOLDEN SPIN
   ItemDescription: Up to 20x Rewards
   isRiskFree: 1
-  zoneMultiplier: 10
+  zoneMultiplier: 20
   canHaveItems:
   - {fileID: 11400000, guid: 5bb09666293d17e46b13ff3f824d0b9b, type: 2}
   - {fileID: 11400000, guid: bfdd7ba79f931ff4fb6b6fce77104c90, type: 2}

@@ -878,7 +878,7 @@ PrefabInstance:
     - target: {fileID: 8488903945544980483, guid: 941bfd77def67ce41b6477eed1877db2,
         type: 3}
       propertyPath: slotMultiplier
-      value: 2
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941bfd77def67ce41b6477eed1877db2, type: 3}
@@ -933,6 +933,7 @@ MonoBehaviour:
   onSpinBomb: {fileID: 11400000, guid: a8fb5b69276abf541b23cb1d9808e7bd, type: 2}
   onGiveUpButtonClicked: {fileID: 11400000, guid: d40e132b64105904295176c04c9bc8cd,
     type: 2}
+  onSpinReset: {fileID: 11400000, guid: 07db9a7ff65186c468126795134876d7, type: 2}
 --- !u!4 &434479994
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,7 +1007,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Up to 10x Rewards
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44b1d2c61b926524b8b20ebc3c868fb3, type: 2}
   m_sharedMaterial: {fileID: -388204106183755757, guid: 44b1d2c61b926524b8b20ebc3c868fb3,
@@ -1518,6 +1519,7 @@ MonoBehaviour:
   onSpinGold: {fileID: 11400000, guid: 0574dca320a53ab45825138084522b3e, type: 2}
   onMoneyChanged: {fileID: 11400000, guid: e0d124c2419aced479328e1b5f631b33, type: 2}
   onGoldChanged: {fileID: 11400000, guid: f8eeed8bbfbaf1a4eb38eab5ea6848f6, type: 2}
+  onSpinReset: {fileID: 11400000, guid: 07db9a7ff65186c468126795134876d7, type: 2}
 --- !u!4 &559282473
 Transform:
   m_ObjectHideFlags: 0
@@ -2312,7 +2314,7 @@ PrefabInstance:
     - target: {fileID: 8488903945544980483, guid: 941bfd77def67ce41b6477eed1877db2,
         type: 3}
       propertyPath: slotMultiplier
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941bfd77def67ce41b6477eed1877db2, type: 3}
@@ -3013,6 +3015,7 @@ MonoBehaviour:
   onZoneCounterChanged: {fileID: 11400000, guid: 77868d72cf044dd4baa32561e2edf776,
     type: 2}
   onSpinWheelClicked: {fileID: 11400000, guid: 7987ff60908f3714a82e36c7a1f9c7dc, type: 2}
+  onSpinReset: {fileID: 11400000, guid: 07db9a7ff65186c468126795134876d7, type: 2}
   indicatorTransform: {fileID: 1261728627}
   spinSlices:
   - {fileID: 976210994}
@@ -3356,7 +3359,7 @@ PrefabInstance:
     - target: {fileID: 8488903945544980483, guid: 941bfd77def67ce41b6477eed1877db2,
         type: 3}
       propertyPath: slotMultiplier
-      value: 2
+      value: 56
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941bfd77def67ce41b6477eed1877db2, type: 3}
@@ -3521,7 +3524,7 @@ PrefabInstance:
     - target: {fileID: 8488903945544980483, guid: 941bfd77def67ce41b6477eed1877db2,
         type: 3}
       propertyPath: slotMultiplier
-      value: 3
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941bfd77def67ce41b6477eed1877db2, type: 3}
@@ -4819,7 +4822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GOLDEN SPIN
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44b1d2c61b926524b8b20ebc3c868fb3, type: 2}
   m_sharedMaterial: {fileID: -388204106183755757, guid: 44b1d2c61b926524b8b20ebc3c868fb3,
@@ -5301,7 +5304,7 @@ PrefabInstance:
     - target: {fileID: 8488903945544980483, guid: 941bfd77def67ce41b6477eed1877db2,
         type: 3}
       propertyPath: slotMultiplier
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 941bfd77def67ce41b6477eed1877db2, type: 3}

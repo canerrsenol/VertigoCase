@@ -17,7 +17,7 @@ MonoBehaviour:
   Name: SILVER SPIN
   ItemDescription: Up to 10x Rewards
   isRiskFree: 1
-  zoneMultiplier: 5
+  zoneMultiplier: 10
   canHaveItems:
   - {fileID: 11400000, guid: 5bb09666293d17e46b13ff3f824d0b9b, type: 2}
   - {fileID: 11400000, guid: b4d155ff072dda94094577c2083c75ec, type: 2}

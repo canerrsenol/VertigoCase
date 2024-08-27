@@ -9,6 +9,8 @@ public class PlayerDataManager : ValidatedMonoBehaviour
     [SerializeField, Anywhere] private IntEventChannelSO onMoneyChanged;
     [SerializeField, Anywhere] private IntEventChannelSO onGoldChanged;
     
+    [SerializeField, Anywhere] private VoidEventChannelSO onSpinReset;
+    
     private PlayerData playerData;
     
     private void Start()
@@ -24,12 +26,22 @@ public class PlayerDataManager : ValidatedMonoBehaviour
     {
         onSpinMoney.OnEventRaised += AddOnSpinMoney;
         onSpinGold.OnEventRaised += AddOnSpinGold;
+        onSpinReset.OnEventRaised += ResetSpinValues;
     }
     
     private void OnDisable()
     {
         onSpinMoney.OnEventRaised -= AddOnSpinMoney;
         onSpinGold.OnEventRaised -= AddOnSpinGold;
+        onSpinReset.OnEventRaised -= ResetSpinValues;
+    }
+    
+    private void ResetSpinValues()
+    {
+        playerData.Money = 0;
+        playerData.Gold = 0;
+        onMoneyChanged.RaiseEvent(playerData.Money);
+        onGoldChanged.RaiseEvent(playerData.Gold);
     }
     
     private void AddOnSpinMoney(int value)

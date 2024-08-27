@@ -6,6 +6,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField, Anywhere] private GameObject bombPanel;
     [SerializeField, Anywhere] private IntEventChannelSO onSpinBomb;
     [SerializeField, Anywhere] private VoidEventChannelSO onGiveUpButtonClicked;
+    [SerializeField, Anywhere] private VoidEventChannelSO onSpinReset;
 
     private void OnEnable()
     {
@@ -26,6 +27,7 @@ public class UIManager : Singleton<UIManager>
     
     private void HideBombPanel()
     {
+        onSpinReset.RaiseEvent();
         bombPanel.SetActive(false);
     }
 }
