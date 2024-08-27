@@ -3,10 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BombItem", menuName = "SpinWheel/BombItem")]
 public class BombItemSO : SpinWheelItemSO
 {
-    public VoidEventChannelSO bombEventChannel;
-    public override void OnSpinWheelItem()
+    public IntEventChannelSO bombEventChannel;
+    public override void OnSpinWheelItem(int multiplier)
     {
-        bombEventChannel.RaiseEvent();
+        bombEventChannel.RaiseEvent(multiplier);
         Debug.Log("Bomb Item");
     }
 }

@@ -6,8 +6,8 @@ public class ChestItemSO : SpinWheelItemSO
     public ChestType chestType;
     
     public ChestItemChannelSO chestItemChannel;
-    public override void OnSpinWheelItem()
+    public override void OnSpinWheelItem(int multiplier)
     {
-        chestItemChannel.RaiseEvent(chestType);
+        chestItemChannel.RaiseEvent(chestType, multiplier);
     }
 }

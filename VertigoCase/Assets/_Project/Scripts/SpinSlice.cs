@@ -19,6 +19,6 @@ public class SpinSlice : MonoBehaviour
     
     public void SpinSliceAction()
     {
-        spinSliceItem.OnSpinWheelItem();
+        spinSliceItem.OnSpinWheelItem(slotMultiplier);
     }
 }

@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GoldItem", menuName = "SpinWheel/GoldItem")]
 public class GoldItemSO : SpinWheelItemSO
 {
-    public VoidEventChannelSO OnGoldItemCollected;
-    public override void OnSpinWheelItem()
+    public IntEventChannelSO OnGoldItemCollected;
+    public override void OnSpinWheelItem(int multiplier)
     {
-        OnGoldItemCollected.RaiseEvent();
+        OnGoldItemCollected.RaiseEvent(multiplier);
     }
 }
