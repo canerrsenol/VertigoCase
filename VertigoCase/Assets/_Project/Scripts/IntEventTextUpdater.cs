@@ -27,5 +27,6 @@ public class IntEventTextUpdater : ValidatedMonoBehaviour
                 currentValue = x;
                 text.text = currentValue.ToString();
             });
+        text.gameObject.name = text.name + "_" + value;
     }
 }

@@ -17,9 +17,16 @@ MonoBehaviour:
   Name: BRONZE SPIN
   ItemDescription: Up to 5x Rewards
   isRiskFree: 0
-  zoneMultiplier: 5
+  zoneMultiplier: {x: 1, y: 5}
   canHaveItems:
   - {fileID: 11400000, guid: b4d155ff072dda94094577c2083c75ec, type: 2}
   - {fileID: 11400000, guid: 5bb09666293d17e46b13ff3f824d0b9b, type: 2}
-  - {fileID: 11400000, guid: d75054201042d5f45835ed66846c574f, type: 2}
   - {fileID: 11400000, guid: 7d3f6855dcb609348966c5881bedb044, type: 2}
+  - {fileID: 11400000, guid: 7d3f6855dcb609348966c5881bedb044, type: 2}
+  - {fileID: 11400000, guid: 7d3f6855dcb609348966c5881bedb044, type: 2}
+  - {fileID: 11400000, guid: 7d3f6855dcb609348966c5881bedb044, type: 2}
+  - {fileID: 11400000, guid: 7d3f6855dcb609348966c5881bedb044, type: 2}
+  - {fileID: 11400000, guid: d75054201042d5f45835ed66846c574f, type: 2}
+  - {fileID: 11400000, guid: d75054201042d5f45835ed66846c574f, type: 2}
+  - {fileID: 11400000, guid: d75054201042d5f45835ed66846c574f, type: 2}
+  - {fileID: 11400000, guid: d75054201042d5f45835ed66846c574f, type: 2}

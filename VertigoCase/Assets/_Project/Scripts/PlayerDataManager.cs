@@ -11,6 +11,8 @@ public class PlayerDataManager : ValidatedMonoBehaviour
     
     [SerializeField, Anywhere] private VoidEventChannelSO onSpinReset;
     
+    [SerializeField, Anywhere] private VoidEventChannelSO onLeavingGame;
+    
     private PlayerData playerData;
     
     private void Start()
@@ -27,6 +29,7 @@ public class PlayerDataManager : ValidatedMonoBehaviour
         onSpinMoney.OnEventRaised += AddOnSpinMoney;
         onSpinGold.OnEventRaised += AddOnSpinGold;
         onSpinReset.OnEventRaised += ResetSpinValues;
+        onLeavingGame.OnEventRaised += ResetSpinValues;
     }
     
     private void OnDisable()
@@ -34,6 +37,7 @@ public class PlayerDataManager : ValidatedMonoBehaviour
         onSpinMoney.OnEventRaised -= AddOnSpinMoney;
         onSpinGold.OnEventRaised -= AddOnSpinGold;
         onSpinReset.OnEventRaised -= ResetSpinValues;
+        onLeavingGame.OnEventRaised -= ResetSpinValues;
     }
     
     private void ResetSpinValues()

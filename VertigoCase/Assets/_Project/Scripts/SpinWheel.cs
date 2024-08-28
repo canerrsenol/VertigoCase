@@ -18,6 +18,8 @@ public class SpinWheel : ValidatedMonoBehaviour
     [SerializeField, Anywhere] private IntEventChannelSO onZoneCounterChanged;
     [SerializeField, Anywhere] private VoidEventChannelSO onSpinWheelClicked;
     [SerializeField, Anywhere] private VoidEventChannelSO onSpinReset;
+    [SerializeField, Anywhere] private VoidEventChannelSO onLeavingGame;
+    [SerializeField, Anywhere] private VoidEventChannelSO onExitButtonClicked;
     
     // For indicator animation
     [SerializeField, Anywhere] private Transform indicatorTransform;
@@ -46,12 +48,22 @@ public class SpinWheel : ValidatedMonoBehaviour
     {
         onSpinWheelClicked.OnEventRaised += Spin;
         onSpinReset.OnEventRaised += ResetSpin;
+        onExitButtonClicked.OnEventRaised += TryingToExitGame;
     }
 
     private void OnDisable()
     {
         onSpinWheelClicked.OnEventRaised -= Spin;
         onSpinReset.OnEventRaised -= ResetSpin;
+        onExitButtonClicked.OnEventRaised -= TryingToExitGame;
+    }
+
+    private void TryingToExitGame()
+    {
+        if(isSpinning) { return; }
+        if(!currentZoneSettings.isRiskFree) { return; }
+        ResetSpin();
+        onLeavingGame.RaiseEvent();
     }
 
     private void ResetSpin()
@@ -60,10 +72,10 @@ public class SpinWheel : ValidatedMonoBehaviour
         onZoneCounterChanged.RaiseEvent(zoneCounter);
         currentZoneSettings = bronzeZoneSettings;
         spinWheelVisual.SetSpinWheelVisual(bronzeZoneSettings);
-        UpdateSliceItems(currentZoneSettings);
+        UpdateSliceItems();
     }
 
-    public void Spin()
+    private void Spin()
     {
         if (isSpinning) { return; }
         
@@ -84,8 +96,6 @@ public class SpinWheel : ValidatedMonoBehaviour
                     isSpinning = false;
                     PrepareForNextSpin();
                 });
-                
-                Debug.Log("Spin completed at index: " + currentSliceIndex);
             });
     }
 
@@ -109,16 +119,16 @@ public class SpinWheel : ValidatedMonoBehaviour
         }
         
         spinWheelVisual.SetSpinWheelVisual(currentZoneSettings);
-        UpdateSliceItems(currentZoneSettings);
+        UpdateSliceItems();
     }
 
-    private void UpdateSliceItems(SpinWheelZoneSettingsSO zoneSettings)
+    private void UpdateSliceItems()
     {
-        if (zoneSettings.isRiskFree)
+        if (currentZoneSettings.isRiskFree)
         {
             for (int i = 0; i < spinSlices.Length; i++)
             {
-                SetRandomItemToSlice(zoneSettings, i);
+                SetRandomItemToSlice(i);
             }
         }
         else
@@ -129,15 +139,16 @@ public class SpinWheel : ValidatedMonoBehaviour
             for (int i = 0; i < spinSlices.Length; i++)
             {
                 if (i == bombIndex) { continue; }
-                SetRandomItemToSlice(zoneSettings, i);
+                SetRandomItemToSlice(i);
             }
         }
     }
 
-    private void SetRandomItemToSlice(SpinWheelZoneSettingsSO zoneSettings, int i)
+    private void SetRandomItemToSlice(int i)
     {
-        var randomItem = zoneSettings.canHaveItems[Random.Range(0, zoneSettings.canHaveItems.Length)];
-        spinSlices[i].SetItem(randomItem, zoneSettings.zoneMultiplier * zoneCounter);
+        var randomItem = currentZoneSettings.canHaveItems[Random.Range(0, currentZoneSettings.canHaveItems.Length)];
+        int multiplier =  zoneCounter * Random.Range(currentZoneSettings.zoneMultiplier.x , currentZoneSettings.zoneMultiplier.y);
+        spinSlices[i].SetItem(randomItem, multiplier);
     }
 
     private void CheckIndicatorAnimation()

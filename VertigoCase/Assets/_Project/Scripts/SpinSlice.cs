@@ -31,6 +31,12 @@ public class SpinSlice : MonoBehaviour
     private void UpdateSliceVisual()
     {
         multiplierText.text = slotMultiplier + "x";
-        if(spinSliceItem != null) itemImage.sprite = spinSliceItem.ItemSprite;
+        multiplierText.gameObject.name = multiplierText.name + "_" + slotMultiplier;
+
+        if (spinSliceItem != null)
+        {
+            itemImage.sprite = spinSliceItem.ItemSprite;
+            itemImage.gameObject.name = itemImage.name + "_" + spinSliceItem.name;
+        }
     } 
 }
